@@ -3,6 +3,7 @@ declare interface QuizQuestion {
     type: 'SINGLE' | 'MULTIPLE'
     question: string
     options: string[]
+    answer?: number | number[]
 }
 declare interface Quiz {
     id: string
@@ -13,5 +14,5 @@ declare interface Quiz {
 
 declare  interface QuizResult {
     score: number
-    question: Quiz
+    answers: QuizQuestion[]
 }
