@@ -41,6 +41,9 @@ export const QuizModel = (props: Props) => {
         confirmLoading={loading}
         onCancel={onCancel}
         okText={loading ? 'Generating...' : ''}
+        closable={!loading}
+        maskClosable={false}
+        keyboard={false}
     >
         <Typography.Text type="secondary">
             Get ready for an exciting journey as we explore the depths of knowledge together. Are you prepared to challenge yourself ?

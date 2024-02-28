@@ -14,3 +14,10 @@ export const createQuiz = (data: QuizParam) => {
 export const getQuiz = (uuid: string) => {
     return request.get(`/quiz/${uuid}`)
 }
+
+export const evaluateQuiz = (uuid: string, answer: (number | number[])[]) => {
+    return request.post('/quiz/evaluate', {
+        uuid,
+        answer
+    })
+}

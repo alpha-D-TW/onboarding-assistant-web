@@ -1,20 +1,34 @@
 import {useMemo, useState} from "react";
-import {Space , Radio, Button, Tooltip, Checkbox, message } from "antd";
-import { Quiz } from "../../store/quiz.ts";
-import {Form, Typography} from "antd";
+import {Button, Checkbox, Form, message, Radio, Space, Tooltip, Typography} from "antd";
+import {Quiz} from "../../store/quiz.ts";
 import className from "./quiz.module.less";
 import {QUESTION_TYPE} from "../../constants";
 import {indexToWord} from "../../utils";
-import { CountdownTimer } from "../../components/CountdownTimer.tsx";
+import {CountdownTimer} from "../../components/CountdownTimer.tsx";
+import {useRequest} from "ahooks";
+import { evaluateQuiz } from "../../apis/quiz.ts";
+import {useNavigate} from "react-router-dom";
 
 
 interface Props {
     quiz: Quiz
+    uuid: string
+    onResult: (result: QuizResult) => void
+}
+
+interface FormValue {
+    answers: (number | number[])[]
 }
 export const QuizPage = (props: Props) => {
     const { quiz} = props
     const [index, setIndex] = useState(0)
-    const [form] = Form.useForm();
+    const [canSubmit, setCanSubmit] = useState(false)
+    const [form] = Form.useForm<FormValue>();
+    const navigate = useNavigate()
+
+    const { loading , runAsync } = useRequest(evaluateQuiz, {
+        manual: true,
+    });
 
     const question = useMemo(() => {
         return quiz.questions[index]
@@ -30,13 +44,23 @@ export const QuizPage = (props: Props) => {
         })
     }
 
-    const { answers } = form.getFieldsValue(true);
-    const canSubmit = !!answers?.length && answers.every((item: number | number[]) => item !== null)
-
-    console.log(canSubmit, answers);
 
     const handleFail = () => {
         message.error('Timeout')
+        navigate(`/`)
+    }
+
+    const onValuesChange = () =>{
+        const { answers } = form.getFieldsValue(true);
+        setCanSubmit(
+            !!answers?.length && answers.every((item: number | number[]) => item !== null)
+        )
+    }
+
+    const handleSubmit = async () => {
+        const { answers } = form.getFieldsValue();
+        console.log(answers);
+        runAsync(props.uuid, answers)
     }
 
     return <>
@@ -56,7 +80,7 @@ export const QuizPage = (props: Props) => {
                     <span>Question #{index+1} of {quiz.questions.length}</span>
                 </Space>
             </div>
-            <Form form={form}>
+            <Form form={form} size="large" onValuesChange={onValuesChange}>
                 <div className={className.questionTile}>
                     <Typography.Title level={4}>{index+1}. {question.question}</Typography.Title>
                 </div>
@@ -70,11 +94,12 @@ export const QuizPage = (props: Props) => {
                                                   message: 'please make your choice'
                                               },
                                           ]}
+                                          shouldUpdate
                         >
                             {
-                                question.type === QUESTION_TYPE.SINGLE && <Radio.Group size="large">
+                                question.type === QUESTION_TYPE.SINGLE && <Radio.Group >
                                 <Space direction="vertical">
-                                    {question.options.map((option, index) => {
+                                    {question.options.map((option: string, index: number) => {
                                         return <Radio value={index} key={index}>{indexToWord(index)}. {option}</Radio>
                                     })}
                                 </Space>
@@ -83,7 +108,7 @@ export const QuizPage = (props: Props) => {
                             {
                                 question.type === QUESTION_TYPE.MULTIPLE && <Checkbox.Group key="MULTIPLE">
                                 <Space direction="vertical">
-                                    {question.options.map((option, index) => {
+                                    {question.options.map((option: string, index: number) => {
                                         return <Checkbox value={index} key={index}>{indexToWord(index)}. {option}</Checkbox>
                                     })}
                                 </Space>
@@ -92,8 +117,12 @@ export const QuizPage = (props: Props) => {
                         </Form.Item>
                     }}
                 </Form.List>
-                <div>
-                    <Button type="primary" disabled={!canSubmit} size="large">submit</Button>
+                <div className={className.submitAction}>
+                    <Button type="primary"
+                            loading={loading}
+                            disabled={!canSubmit} size="large"
+                            onClick={handleSubmit}
+                    >submit</Button>
                 </div>
             </Form>
         </div>

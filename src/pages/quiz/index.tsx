@@ -8,10 +8,10 @@ import {getQuiz} from "../../apis/quiz.ts";
 
 const Quiz = () => {
     const params = useParams()
-    const id = params.id
+    const id = params.id as string
 
     const {data, loading} = useRequest(() => {
-        return getQuiz(id as string)
+        return getQuiz(id)
     })
 
     const quiz = useMemo(() => {
@@ -22,7 +22,7 @@ const Quiz = () => {
 
     return <div className={className.container}>
         <Spin spinning={loading}>
-            { !!quiz && <QuizPage quiz={quiz}></QuizPage>}
+            { !!quiz && <QuizPage quiz={quiz} uuid={id}></QuizPage>}
         </Spin>
     </div>
 
