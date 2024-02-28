@@ -1,3 +1,5 @@
+import {request} from './request.ts'
+
 interface QuizParam {
     course: string
     number: string
@@ -6,14 +8,9 @@ interface QuizParam {
 
 export const createQuiz = (data: QuizParam) => {
     console.log(data);
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve({
-                data: {
-                    uuid: 111,
-                    quizs: []
-                }
-            })
-        }, 5000)
-    })
+    return request.post('/quiz/create', data)
+}
+
+export const getQuiz = (uuid: string) => {
+    return request.get(`/quiz/${uuid}`)
 }

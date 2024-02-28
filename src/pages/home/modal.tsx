@@ -53,7 +53,7 @@ export const QuizModel = (props: Props) => {
             wrapperCol={{ span: 16 }}
             style={{ maxWidth: 600 }}
             initialValues={{
-                course: 'java',
+                course: 'java_development',
                 type: 'MIXED',
                 number: 10,
             }}
@@ -68,7 +68,7 @@ export const QuizModel = (props: Props) => {
             >
                 <Select
                     options={[
-                        {value: 'java', label: 'Java Development'}
+                        {value: 'java_development', label: 'Java Development'}
                     ]}
                 />
             </Form.Item>

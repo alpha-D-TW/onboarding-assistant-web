@@ -5,6 +5,8 @@ import { StyleProvider } from '@ant-design/cssinjs';
 import { RecoilRoot } from 'recoil';
 import App from './App.tsx'
 import './index.css'
+import router from "./routes.tsx";
+import {RouterProvider} from "react-router-dom";
 
 const theme = {
     token: {
@@ -24,7 +26,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <RecoilRoot>
       <StyleProvider hashPriority="high">
           <ConfigProvider theme={theme}>
-            <App/>
+            <RouterProvider router={router} >
+            </RouterProvider>
           </ConfigProvider>
       </StyleProvider>
       </RecoilRoot>
