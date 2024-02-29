@@ -22,7 +22,7 @@ const theme = {
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  <>
       <RecoilRoot>
       <StyleProvider hashPriority="high">
           <ConfigProvider theme={theme}>
@@ -31,5 +31,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           </ConfigProvider>
       </StyleProvider>
       </RecoilRoot>
-  </React.StrictMode>,
+  </>,
 )

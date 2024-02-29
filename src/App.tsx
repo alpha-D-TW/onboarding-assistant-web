@@ -40,7 +40,7 @@ const items: MenuItem[] = [
 const App: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
     const {
-        token: { colorBgContainer, borderRadiusLG },
+        token: { colorBgContainer },
     } = theme.useToken();
 
     return (
@@ -59,20 +59,7 @@ const App: React.FC = () => {
                     </span>
                 </Header>
                 <Content style={{ margin: '0 16px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                        <Breadcrumb.Item>Quiz</Breadcrumb.Item>
-                        <Breadcrumb.Item>List</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div
-                        style={{
-                            padding: 24,
-                            minHeight: 360,
-                            background: colorBgContainer,
-                            borderRadius: borderRadiusLG,
-                        }}
-                    >
-                        <Outlet/>
-                    </div>
+                    <Outlet/>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
                   A+ AI {new Date().getFullYear()} Created by ThoughtWorks

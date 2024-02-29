@@ -1,6 +1,6 @@
 import {Divider, Form, Modal, Select, Typography} from "antd";
-import { useState } from "react";
 import { useRequest } from "ahooks";
+import queryString from "query-string";
 import { createQuiz } from "../../apis/quiz.ts";
 import {quizState} from "../../store/quiz.ts";
 import {useRecoilState} from "recoil";
@@ -20,6 +20,8 @@ export const QuizModel = (props: Props) => {
 
     const handleOk = () => {
         form.validateFields().then(async (value) => {
+            const url = '/quiz/generate'
+            // navigate(`${url}?${queryString.stringify(value)}`)
             const { data } = await runAsync(value)
             if(data.uuid) {
                 setQuiz({
@@ -58,6 +60,7 @@ export const QuizModel = (props: Props) => {
             initialValues={{
                 course: 'java_development',
                 type: 'MIXED',
+                difficulty: 'difficult',
                 number: 10,
             }}
             form={form}
