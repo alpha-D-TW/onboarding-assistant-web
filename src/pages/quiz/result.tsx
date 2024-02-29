@@ -2,6 +2,9 @@ import {Checkbox, Divider, Radio, Space, Typography} from "antd";
 import {QUESTION_TYPE} from "../../constants";
 import {indexToWord} from "../../utils";
 import className from "./result.module.less";
+import React, { useState } from 'react';
+import { LikeOutlined, DislikeOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
 
 interface Props {
     result: QuizResult
@@ -14,13 +17,23 @@ const { Title, Text } = Typography;
 const getAnswer = (value: number | number[]) => {
     return Array.isArray(value) ? value[0] : value
 }
+
+
 export const QuizResult = (props: Props) => {
     const { quiz, result } = props
     const {score, answers, user } = result
+
+
+
     return <>
         <Title level={2}>{quiz.title}</Title>
         <Title level={1}>{score}</Title>
         <Text type="secondary">Great job on your exam!</Text>
+        <div>
+            <LikeOutlined style={{ fontSize: '24px', marginRight: '8px', cursor: 'pointer' }} />
+            <DislikeOutlined style={{ fontSize: '24px', cursor: 'pointer' }} />
+        </div>
+
         <br />
         {score >= 90 && (
             <Text type="success">Congratulations! You achieved an outstanding score!</Text>
@@ -65,10 +78,12 @@ export const QuizResult = (props: Props) => {
                                   </Checkbox.Group>
                                 }
                             </div>
+
                         )
                     })
                 }
             </div>
+
           </>
         }
     </>
