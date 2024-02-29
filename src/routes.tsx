@@ -12,12 +12,11 @@ export default createBrowserRouter([
                 index: true,
                 element: <Home />,
             },
-            {
-                path: "/quiz/:id",
-                element: <Quiz />,
-            },
         ]
     },
-
+    {
+        path: "/quiz/:id",
+        element: <Quiz />,
+    },
 ]);
 
