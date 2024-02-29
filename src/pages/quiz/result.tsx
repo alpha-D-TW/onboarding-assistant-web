@@ -57,9 +57,9 @@ export const QuizResult = (props: Props) => {
                                 {
                                     question.type === QUESTION_TYPE.SINGLE && <Radio.Group key={index} value={getAnswer(question.answer)}>
                                     <Space direction="vertical">
-                                        {question.options.map((option: string, index: number) => {
-                                            return <Radio value={index} key={index} className={getAnswer(user[index]) ? className.wrong : ''}>
-                                                {indexToWord(index)}. {option}
+                                        {question.options.map((option: string, optionIndex: number) => {
+                                            return <Radio value={index} key={optionIndex} className={getAnswer(user[index]) === optionIndex ? className.wrong : ''}>
+                                                {indexToWord(optionIndex)}. {option}
                                             </Radio>
                                         })}
                                     </Space>
@@ -68,9 +68,9 @@ export const QuizResult = (props: Props) => {
                                 {
                                     question.type === QUESTION_TYPE.MULTIPLE && <Checkbox.Group key={index} value={question.answer as number[]}>
                                     <Space direction="vertical">
-                                        {question.options.map((option: string, index: number) => {
-                                            return <Checkbox value={index} key={index} className={
-                                                (user[index] as number[]).includes(index) ? className.wrong : ''
+                                        {question.options.map((option: string, optionIndex: number) => {
+                                            return <Checkbox value={index} key={optionIndex} className={
+                                                (user[index] as number[]).includes(optionIndex) ? className.wrong : ''
                                             }>{indexToWord(index)}. {option}</Checkbox>
                                         })}
                                     </Space>
