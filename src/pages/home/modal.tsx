@@ -76,6 +76,21 @@ export const QuizModel = (props: Props) => {
                     ]}
                 />
             </Form.Item>
+                        <Form.Item
+                            label="Difficulty"
+                            name="difficulty"
+                            rules={[
+                                {required: true}
+                            ]}
+                        >
+                            <Select
+                                options={[
+                                    {value: 'simple', label: '0(simple)'},
+                                    {value: 'middle', label: '1(middle)'},
+                                    {value: 'difficult', label: '2(simple)'},
+                                ]}
+                            />
+                        </Form.Item>
             <Form.Item
                 label="Question Type"
                 name="type"

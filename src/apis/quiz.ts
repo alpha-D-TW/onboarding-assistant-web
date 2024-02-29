@@ -2,8 +2,9 @@ import {request} from './request.ts'
 
 interface QuizParam {
     course: string
-    number: string
+    difficulty:string
     type: 'SINGLE' | 'MULTIPLE' | 'MIXED'
+    number: string
 }
 
 export const createQuiz = (data: QuizParam) => {
