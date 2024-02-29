@@ -15,4 +15,5 @@ declare interface Quiz {
 declare  interface QuizResult {
     score: number
     answers: QuizQuestion[]
+    user: (number | number[])[]
 }

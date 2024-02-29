@@ -60,7 +60,10 @@ export const QuizPage = (props: Props) => {
     const handleSubmit = async () => {
         const { answers } = form.getFieldsValue();
         const { data } = await runAsync(props.uuid, answers)
-        props.onResult(data)
+        props.onResult({
+            ...data,
+            user: answers
+        })
     }
 
     return <>
