@@ -40,7 +40,7 @@ export const QuizModel = (props: Props) => {
             initialValues={{
                 course: 'java_development',
                 type: 'MIXED',
-                difficulty: 'difficult',
+                difficulty: 'Middle',
                 number: 10,
             }}
             form={form}
@@ -68,9 +68,9 @@ export const QuizModel = (props: Props) => {
                         >
                             <Select
                                 options={[
-                                    {value: 'simple', label: '0(simple)'},
-                                    {value: 'middle', label: '1(middle)'},
-                                    {value: 'difficult', label: '2(difficult)'},
+                                    {value: 'simple', label: 'Simple'},
+                                    {value: 'middle', label: 'Middle'},
+                                    {value: 'difficult', label: 'Difficult'},
                                 ]}
                             />
                         </Form.Item>
