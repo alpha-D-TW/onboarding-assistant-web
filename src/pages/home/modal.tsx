@@ -70,7 +70,7 @@ export const QuizModel = (props: Props) => {
                                 options={[
                                     {value: 'simple', label: '0(simple)'},
                                     {value: 'middle', label: '1(middle)'},
-                                    {value: 'difficult', label: '2(simple)'},
+                                    {value: 'difficult', label: '2(difficult)'},
                                 ]}
                             />
                         </Form.Item>
