@@ -1,9 +1,5 @@
 import {Divider, Form, Modal, Select, Typography} from "antd";
-import { useRequest } from "ahooks";
 import queryString from "query-string";
-import { createQuiz } from "../../apis/quiz.ts";
-import {quizState} from "../../store/quiz.ts";
-import {useRecoilState} from "recoil";
 import {useNavigate} from "react-router-dom";
 interface Props {
     open: boolean
@@ -11,26 +7,13 @@ interface Props {
 }
 export const QuizModel = (props: Props) => {
     const {open, onCancel } = props
-    const [quiz, setQuiz] = useRecoilState(quizState);
-    const { loading , runAsync } = useRequest(createQuiz, {
-        manual: true,
-    });
     const [form] = Form.useForm()
     const navigate = useNavigate()
 
     const handleOk = () => {
         form.validateFields().then(async (value) => {
             const url = '/quiz/generate'
-            // navigate(`${url}?${queryString.stringify(value)}`)
-            const { data } = await runAsync(value)
-            if(data.uuid) {
-                setQuiz({
-                        ...quiz,
-                        [data.uuid]: data,
-                    }
-                )
-                navigate(`/quiz/${data.uuid}`)
-            }
+            navigate(`${url}?${queryString.stringify(value)}`)
         }).finally(() => {
         })
     };
@@ -40,10 +23,7 @@ export const QuizModel = (props: Props) => {
         title="Start Today Quiz"
         open={open}
         onOk={handleOk}
-        confirmLoading={loading}
         onCancel={onCancel}
-        okText={loading ? 'Generating...' : ''}
-        closable={!loading}
         maskClosable={false}
         keyboard={false}
     >

@@ -6,7 +6,7 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { Layout, Menu, theme } from 'antd';
 import {Link, Outlet} from "react-router-dom";
 import className from "./App.module.less";
 
@@ -26,12 +26,12 @@ function getItem(
         icon,
         children,
         label,
-        disabled
+        disabled,
     } as MenuItem;
 }
 
 const items: MenuItem[] = [
-    getItem('Quiz', '1', <PieChartOutlined />, undefined, false),
+    getItem(<Link to="/">Quiz</Link>, '1', <PieChartOutlined />, undefined, false),
     getItem('Course', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
     getItem('User', 'sub1', <UserOutlined />,),
     getItem('Knowledge', '9', <FileOutlined />),

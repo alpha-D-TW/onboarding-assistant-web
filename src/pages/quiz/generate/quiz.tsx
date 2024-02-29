@@ -32,7 +32,7 @@ export const QuizPage = (props: Props) => {
         </Space>
         <div className={className.container}>
             {
-                quiz.questions.map((question, index) => {
+                (quiz.questions || []).map((question, index) => {
                     return <div className={className.item} key={index}>
                         <div className={className.questionTile}>
                             <Typography.Title level={4}>{index+1}. {question.question}</Typography.Title>
