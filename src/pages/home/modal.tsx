@@ -71,7 +71,8 @@ export const QuizModel = (props: Props) => {
             >
                 <Select
                     options={[
-                        {value: 'java_development', label: 'Java Development'}
+                        {value: 'java_development', label: 'Java Development'},
+                        {value: 'security', label: 'Endpoint Security'}
                     ]}
                 />
             </Form.Item>
