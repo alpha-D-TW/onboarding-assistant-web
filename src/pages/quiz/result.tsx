@@ -4,7 +4,6 @@ import {indexToWord} from "../../utils";
 import className from "./result.module.less";
 import React, { useState } from 'react';
 import { LikeOutlined, DislikeOutlined } from '@ant-design/icons';
-import { Tooltip } from 'antd';
 
 interface Props {
     result: QuizResult

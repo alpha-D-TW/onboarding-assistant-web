@@ -1,15 +1,19 @@
-import {Button, Checkbox, message, Radio, Space, Typography} from "antd";
-import {QUESTION_TYPE} from "../../../constants";
-import {indexToWord} from "../../../utils";
-import className from "./quiz.module.less";
+import { Button, Checkbox, message, Radio, Space, Typography } from "antd";
+import { QUESTION_TYPE } from "../../../constants";
+import { indexToWord } from "../../../utils";
 import LikeButton from "../../../components/Like.tsx";
-import {CopyOutlined} from "@ant-design/icons";
+import { CopyOutlined } from "@ant-design/icons";
 import copy from 'copy-to-clipboard';
+import className from "./quiz.module.less";
 
 interface Props {
     quiz: Quiz
     uuid: string
     onResult: (result: QuizResult) => void
+}
+
+const getAnswer = (value: number | number[] | undefined) => {
+    return Array.isArray(value) ? value[0] : value
 }
 
 export const QuizPage = (props: Props) => {
@@ -39,7 +43,7 @@ export const QuizPage = (props: Props) => {
                         </div>
                         <div>
                             {
-                                question.type === QUESTION_TYPE.SINGLE && <Radio.Group value={''}>
+                                question.type === QUESTION_TYPE.SINGLE && <Radio.Group value={getAnswer(question.answer)}>
                                 <Space direction="vertical">
                                     {question.options.map((option: string, index: number) => {
                                         return <Radio value={index} key={index}>{indexToWord(index)}. {option}</Radio>
@@ -48,7 +52,7 @@ export const QuizPage = (props: Props) => {
                               </Radio.Group>
                             }
                             {
-                                question.type === QUESTION_TYPE.MULTIPLE && <Checkbox.Group key="MULTIPLE" value={[]}>
+                                question.type === QUESTION_TYPE.MULTIPLE && <Checkbox.Group key="MULTIPLE" value={question.answer as number[]}>
                                 <Space direction="vertical">
                                     {question.options.map((option: string, index: number) => {
                                         return <Checkbox value={index} key={index}>{indexToWord(index)}. {option}</Checkbox>
