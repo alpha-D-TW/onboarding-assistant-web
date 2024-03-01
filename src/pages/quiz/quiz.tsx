@@ -71,16 +71,16 @@ export const QuizPage = (props: Props) => {
         <div className={className.container}>
             <div className={className.action}>
                 <Space size={16}>
-                    <Tooltip title="Prev Question">
-                        <Button disabled={index == 0} onClick={prev}>PREV</Button>
+                    <Tooltip title="上一题">
+                        <Button disabled={index == 0} onClick={prev}>上一题</Button>
                     </Tooltip>
-                    <Tooltip title="Next Question">
-                        <Button disabled={index === quiz.questions.length-1} onClick={next}>NEXT</Button>
+                    <Tooltip title="下一题">
+                        <Button disabled={index === quiz.questions.length-1} onClick={next}>下一题</Button>
                     </Tooltip>
                 </Space>
                 <Space size={16}>
                     <CountdownTimer initialTime={600} onFinish={handleFail}/>
-                    <span>Question #{index+1} of {quiz.questions.length}</span>
+                    <span>当前第 {index+1} 题，总共 {quiz.questions.length} 题</span>
                 </Space>
             </div>
             <Form form={form} size="large" onValuesChange={onValuesChange}>
