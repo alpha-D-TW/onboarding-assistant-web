@@ -21,6 +21,13 @@ export const QuizResult = (props: Props) => {
     const { quiz, result } = props
     const {score, answers, user } = result
 
+    console.log(user);
+
+    const isUserSelect = (questionIndex: number, optionIndex: number) => {
+        const userSelect = user[questionIndex]
+        return Array.isArray(userSelect) ? userSelect.includes(optionIndex) : userSelect == optionIndex
+    }
+
     return <>
         <Title level={2}>{quiz.title}</Title>
         <Title level={1}>{score}</Title>
@@ -55,7 +62,7 @@ export const QuizResult = (props: Props) => {
                                     question.type === QUESTION_TYPE.SINGLE && <Radio.Group key={index} value={getAnswer(question.answer)}>
                                     <Space direction="vertical">
                                         {question.options.map((option: string, optionIndex: number) => {
-                                            return <Radio value={index} key={optionIndex}>
+                                            return <Radio value={optionIndex} key={optionIndex} className={isUserSelect(index, optionIndex) ? className.wrong : ''}>
                                                 {indexToWord(optionIndex)}. {option}
                                             </Radio>
                                         })}
@@ -66,7 +73,7 @@ export const QuizResult = (props: Props) => {
                                     question.type === QUESTION_TYPE.MULTIPLE && <Checkbox.Group key={index} value={question.answer as number[]}>
                                     <Space direction="vertical">
                                         {question.options.map((option: string, optionIndex: number) => {
-                                            return <Checkbox value={index} key={optionIndex}>{indexToWord(index)}. {option}</Checkbox>
+                                            return <Checkbox value={optionIndex} key={optionIndex} className={isUserSelect(index, optionIndex) ? className.wrong : ''}>{indexToWord(index)}. {option}</Checkbox>
                                         })}
                                     </Space>
                                   </Checkbox.Group>
