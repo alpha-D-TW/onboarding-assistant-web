@@ -35,13 +35,13 @@ export const QuizResult = (props: Props) => {
 
         <br />
         {score >= 90 && (
-            <Text type="success">Congratulations! You achieved an outstanding score!</Text>
+            <Text type="success">恭喜！ 你取得了优异的成绩！</Text>
         )}
         {score < 90 && score >= 70 && (
-            <Text type="warning">Well done! You did a good job!</Text>
+            <Text type="warning">做得好！ 你做得好！</Text>
         )}
         {score < 70 && (
-            <Text type="danger">Don't worry! There's always room for improvement. Keep it up!</Text>
+            <Text type="danger">不用担心！ 总是有改进的空间。 继续努力吧！</Text>
         )}
         {
             answers.length && <>

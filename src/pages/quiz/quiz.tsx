@@ -94,7 +94,7 @@ export const QuizPage = (props: Props) => {
                                           rules={[
                                               {
                                                   required: true,
-                                                  message: 'please make your choice'
+                                                  message: '请做出你的选择'
                                               },
                                           ]}
                                           shouldUpdate

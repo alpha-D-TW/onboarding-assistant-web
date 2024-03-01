@@ -31,10 +31,10 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-    getItem(<Link to="/">Quiz</Link>, '1', <PieChartOutlined />, undefined, false),
-    getItem('Course', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    getItem('User', 'sub1', <UserOutlined />,),
-    getItem('Knowledge', '9', <FileOutlined />),
+    getItem(<Link to="/">问卷</Link>, '1', <PieChartOutlined />, undefined, false),
+    getItem('课程', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
+    getItem('用户', 'sub1', <UserOutlined />,),
+    getItem('知识库', '9', <FileOutlined />),
 ];
 
 const App: React.FC = () => {

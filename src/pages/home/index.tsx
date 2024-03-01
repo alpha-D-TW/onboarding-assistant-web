@@ -33,9 +33,8 @@ function Home() {
                 }}
             >
                 <div className={className.container}>
-                    <Typography.Title level={3}>Ready to explore AI? Let's start generate Quiz.</Typography.Title>
-                    <Typography.Text type="secondary">We helped great team write their success stories. Join now. Choose
-                        professional online assessment tool.</Typography.Text>
+                    <Typography.Title level={3}>准备好探索人工智能了吗？ 让我们开始生成测验。</Typography.Title>
+                    <Typography.Text type="secondary">我们帮助优秀的团队书写他们的成功故事。 选择专业的在线评估助手。</Typography.Text>
                     <div className={className.content}>
                         <Button className={className.button} size="large" onClick={showModal}>
                             <img src={Robot}/>

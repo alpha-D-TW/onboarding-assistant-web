@@ -20,16 +20,14 @@ export const QuizModel = (props: Props) => {
 
 
     return  <Modal
-        title="Start Today Quiz"
+        title="问卷生成"
         open={open}
         onOk={handleOk}
         onCancel={onCancel}
         maskClosable={false}
         keyboard={false}
     >
-        <Typography.Text type="secondary">
-            Get ready for an exciting journey as we explore the depths of knowledge together. Are you prepared to challenge yourself ?
-        </Typography.Text>
+        <Typography.Text type="secondary">我们一起探索知识的深度吧</Typography.Text>
         <Divider />
         <Form
             name="basic"
@@ -46,7 +44,7 @@ export const QuizModel = (props: Props) => {
             form={form}
         >
             <Form.Item
-                label="Course"
+                label="课程"
                 name="course"
                 rules={[
                     {required: true}
@@ -54,13 +52,13 @@ export const QuizModel = (props: Props) => {
             >
                 <Select
                     options={[
-                        {value: 'java_development', label: 'Java Development'},
-                        {value: 'endpoint_security', label: 'Endpoint Security'}
+                        {value: 'java_development', label: 'JAVA 代码规范'},
+                        {value: 'endpoint_security', label: '终端安全规范'}
                     ]}
                 />
             </Form.Item>
                         <Form.Item
-                            label="Difficulty"
+                            label="难度"
                             name="difficulty"
                             rules={[
                                 {required: true}
@@ -68,14 +66,14 @@ export const QuizModel = (props: Props) => {
                         >
                             <Select
                                 options={[
-                                    {value: 'simple', label: 'Simple'},
-                                    {value: 'middle', label: 'Middle'},
-                                    {value: 'difficult', label: 'Difficult'},
+                                    {value: 'simple', label: '简单'},
+                                    {value: 'middle', label: '中等'},
+                                    {value: 'difficult', label: '困难'},
                                 ]}
                             />
                         </Form.Item>
             <Form.Item
-                label="Question Type"
+                label="问题类型"
                 name="type"
                 rules={[
                     {required: true}
@@ -83,14 +81,14 @@ export const QuizModel = (props: Props) => {
             >
                 <Select
                     options={[
-                        {value: 'SINGLE', label: 'Single Choice'},
-                        {value: 'MULTIPLE', label: 'Multiple Choice'},
-                        {value: 'MIXED', label: 'Mixed'},
+                        {value: 'SINGLE', label: '单选'},
+                        {value: 'MULTIPLE', label: '多选'},
+                        {value: 'MIXED', label: '混合'},
                     ]}
                 />
             </Form.Item>
             <Form.Item
-                label="Number of Questions"
+                label="问题数量"
                 name="number"
                 rules={[
                     {required: true}
