@@ -1,5 +1,5 @@
 import { Button, Checkbox, message, Radio, Space, Typography } from "antd";
-import { QUESTION_TYPE } from "../../../constants";
+import {QUESTION_TYPE, QUESTION_TYPE_LABELS} from "../../../constants";
 import { indexToWord } from "../../../utils";
 import LikeButton from "../../../components/Like.tsx";
 import { CopyOutlined } from "@ant-design/icons";
@@ -29,7 +29,7 @@ export const QuizPage = (props: Props) => {
 
     return <>
         <Space size={24}>
-            <Typography.Title level={2} className={className.title}>{quiz.title}</Typography.Title>
+            <Typography.Title level={2} className={className.title}>{quiz.title} </Typography.Title>
             <Button onClick={handleCopy}>
                 <CopyOutlined /> Share
             </Button>
@@ -39,7 +39,7 @@ export const QuizPage = (props: Props) => {
                 (quiz.questions || []).map((question, index) => {
                     return <div className={className.item} key={index}>
                         <div className={className.questionTile}>
-                            <Typography.Title level={4}>{index+1}. {question.question}</Typography.Title>
+                            <Typography.Title level={4}>{index+1}. {question.question} [{QUESTION_TYPE_LABELS[question.type as QUESTION_TYPE]}]</Typography.Title>
                         </div>
                         <div>
                             {

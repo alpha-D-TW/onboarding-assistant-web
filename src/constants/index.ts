@@ -6,7 +6,7 @@ export enum QUESTION_TYPE {
 }
 
 export const QUESTION_TYPE_LABELS = {
-  [QUESTION_TYPE.SINGLE]: 'Single Choice',
-  [QUESTION_TYPE.MULTIPLE]: 'Multiple Choice',
+  [QUESTION_TYPE.SINGLE]: '单选',
+  [QUESTION_TYPE.MULTIPLE]: '多选',
   [QUESTION_TYPE.MIXED]: 'Mixed',
 }

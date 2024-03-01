@@ -2,7 +2,7 @@ import {useMemo, useState} from "react";
 import {Button, Checkbox, Form, message, Radio, Space, Tooltip, Typography} from "antd";
 import {Quiz} from "../../store/quiz.ts";
 import className from "./quiz.module.less";
-import {QUESTION_TYPE} from "../../constants";
+import {QUESTION_TYPE, QUESTION_TYPE_LABELS} from "../../constants";
 import {indexToWord} from "../../utils";
 import {CountdownTimer} from "../../components/CountdownTimer.tsx";
 import {useRequest} from "ahooks";
@@ -85,7 +85,7 @@ export const QuizPage = (props: Props) => {
             </div>
             <Form form={form} size="large" onValuesChange={onValuesChange}>
                 <div className={className.questionTile}>
-                    <Typography.Title level={4}>{index+1}. {question.question}</Typography.Title>
+                    <Typography.Title level={4}>{index+1}. {question.question} [{QUESTION_TYPE_LABELS[question.type as QUESTION_TYPE]}]</Typography.Title>
                 </div>
                 <Form.List name="answers" initialValue={new Array(quiz.questions.length).fill(null)} >
                     {(fields) => {
@@ -125,7 +125,7 @@ export const QuizPage = (props: Props) => {
                             loading={loading}
                             disabled={!canSubmit} size="large"
                             onClick={handleSubmit}
-                    >submit</Button>
+                    >提交</Button>
                 </div>
             </Form>
         </div>
